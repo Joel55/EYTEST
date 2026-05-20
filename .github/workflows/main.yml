@@ -1,8 +1,12 @@
+name: EY Pipeline
 
 on:
   push:
     branches:
       - master
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   semgrep:
@@ -15,13 +19,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install application dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
       - name: Install Semgrep
-        run: python3 -m pip install semgrep
+        run: pip install semgrep
 
       - name: Run Semgrep Scan
-        run: semgrep --config auto --error || true
+        run: semgrep --config auto
