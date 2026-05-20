@@ -1,4 +1,4 @@
-# Damn Vulnerable NodeJS Application (DVNA)
+main.yaml# Damn Vulnerable NodeJS Application (DVNA)
 
 ![dvna-logo](docs/resources/dvna.png)
 
